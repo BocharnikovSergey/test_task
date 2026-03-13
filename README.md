@@ -72,8 +72,8 @@ element = 'user'
 - update_all_permission - разрешает редактировать **любые объекты**
 
 ## Удаление
-delete_permission - разрешает удалять **свои объекты**
-delete_all_permission` - разрешает удалять **любые объекты**
+- delete_permission - разрешает удалять **свои объекты**
+- delete_all_permission - разрешает удалять **любые объекты**
 
 
 # Проверка доступа
