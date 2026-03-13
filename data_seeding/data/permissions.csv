@@ -1,0 +1,7 @@
+role,element,read_permission,read_all_permission,create_permission,update_permission,update_all_permission,delete_permission,delete_all_permission
+admin,user,1,1,1,1,1,1,1
+admin,roles,1,1,1,1,1,1,1
+admin,permissions,1,1,1,1,1,1,1
+admin,elements,1,1,1,1,1,1,1
+user,user,1,0,0,1,0,1,0
+manager,user,1,1,0,1,1,1,0
