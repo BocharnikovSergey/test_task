@@ -28,4 +28,5 @@ def configure_logging():
     logger.addHandler(console_handler)
     return logger
 
+
 logger_even = configure_logging()
