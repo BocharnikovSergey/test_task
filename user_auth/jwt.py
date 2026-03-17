@@ -26,7 +26,6 @@ def decode_jwt_token(token):
         payload = jwt.decode(
             token, settings.SECRET_KEY, algorithms=[ALGORITHM]
         )
-        print(payload, datetime.now(timezone.utc) + timedelta(seconds=1))
         return payload['user_id']
     except (jwt.ExpiredSignatureError, jwt.InvalidTokenError):
         return None

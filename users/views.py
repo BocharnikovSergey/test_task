@@ -51,7 +51,7 @@ class UserView(views.APIView):
 
     def delete(self, request, pk=None):
         user = self.get_user(pk=pk)
-        user.email = f'deleted_{self.email}'
+        user.email = f'deleted_{self.user.email}'
         user.is_active = False
         user.save()
 

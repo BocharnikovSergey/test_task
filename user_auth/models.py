@@ -10,7 +10,7 @@ class DeactivatedToken(TimeStampedModel):
     """Модель в которой хранятся токены при выходи из системы."""
 
     token = models.TextField(unique=True)
-    user = models.ForeignKey(
+    user_id = models.ForeignKey(
         User, on_delete=models.CASCADE, verbose_name='Пользователь'
     )
 

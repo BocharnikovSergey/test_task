@@ -37,15 +37,23 @@ class ProjectPermission(BasePermission):
         'DELETE': ('delete_permission', 'delete_all_permission'),
     }
 
+    def __init__(self):
+        self._cache_rule = {}
+
+    def _get_cache_rule(self, user, element_name):
+        if not self._cache_rule[user.id]:
+            self._cache_rule[user.id] = PermissionRoleRule.objects.filter(
+                    role=user.role, element__name=element_name
+                ).first()
+        return self._cache_rule[user.id]
+
     def has_permission(self, request, view):
         if request.user and request.user.is_authenticated:
             element_name = getattr(view, 'element', None)
-            rule = PermissionRoleRule.objects.filter(
-                role=request.user.role, element__name=element_name
-            ).first()
-            view.rule = rule
+            rule = self._get_cache_rule(
+                user=request.user, element_name=element_name
+            )
             permissions = self.METHOD_PERMISSION.get(request.method)
-
             return request.user.is_admin or (
                 rule and permissions and any(
                     getattr(
@@ -56,9 +64,11 @@ class ProjectPermission(BasePermission):
         return False
 
     def has_object_permission(self, request, view, obj):
-        rule = getattr(view, 'rule', None)
         permissions = self.METHOD_PERMISSION.get(request.method)
         user = getattr(obj, 'user', obj)
+        rule = self._get_cache_rule(
+            user=request.user, element_name=getattr(view, 'element', None)
+        )
         return (
             request.user.is_admin
             or request.method == 'POST'
