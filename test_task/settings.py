@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'user_auth.apps.UserAuthConfig',
 
     'rest_framework',
+    'drf_spectacular',
 ]
 
 MIDDLEWARE = [
@@ -65,6 +66,14 @@ REST_FRAMEWORK = {
         'user': '10000/day',
         'anon': '1000/day'
     },
+    'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
+}
+
+SPECTACULAR_SETTINGS = {
+    'TITLE': 'Project',
+    'DESCRIPTION': 'Project description',
+    'VERSION': '1.0.0',
+    'SERVE_INCLUDE_SCHEMA': False,
 }
 
 ROOT_URLCONF = 'test_task.urls'

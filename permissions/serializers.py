@@ -13,7 +13,7 @@ class BusinessElementSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = BusinessElement
-        fields = ('id', 'name', 'descriptions')
+        fields = ('id', 'name', 'description')
         read_only_fields = ('id',)
 
 
