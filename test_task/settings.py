@@ -13,7 +13,7 @@ DATA_DIR = BASE_DIR / 'data_seeding' / 'data'
 
 AUTH_USER_MODEL = 'users.ProjectUser'
 
-SECRET_KEY = os.getenv('SECRET_KEY', get_random_secret_key())
+SECRET_KEY = os.getenv('SECRET_KEY', '')
 
 DEBUG = os.getenv('DEBUG') == 'True'
 
@@ -126,3 +126,14 @@ STATIC_URL = 'static/'
 
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+# logger.
+
+LOG_DIR = BASE_DIR / 'logs'
+LOG_FILE = LOG_DIR / 'project.log'
+LOG_FORMAT = '%(asctime)s - [%(levelname)s] - %(username)s - %(message)s'
+DT_FORMAT = '%d.%m.%Y %H:%M:%S'
+MAX_BYTES = 10**6
+BACKUP_COUNT = 5
+ENCODING = 'utf-8'
